@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  sensor:
+    build: ./sensor
+    container_name: sensor
+    ports:
+      - "9000:9000"
+
+  consumer:
+    build: ./consumer
+    container_name: consumer
+    depends_on:
+      - sensor
+    # consumer will connect to sensor by service name
