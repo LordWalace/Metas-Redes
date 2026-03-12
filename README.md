@@ -14,9 +14,9 @@
 ```bash
 cd c:/Users/Walace/Documents/Metas-Redes
 
-docker-compose build
+docker compose build
 
-docker-compose up
+docker compose up
 ```
 
 - O serviço `sensor` escuta em `:9000`.
@@ -25,7 +25,7 @@ docker-compose up
 Você pode também entrar em qualquer container e ver o binário:
 
 ```bash
-docker-compose exec sensor sh
+docker compose exec sensor sh
 # ./sensor # roda o sensor dentro do container
 ```
 
@@ -47,3 +47,9 @@ Nenhum framework de mensagens externo, tudo em containers Docker, e comunicaçã
 | `echo "hello" \| nc sensor 9000` | Envia uma mensagem para o sensor via TCP. |
 | `docker-compose exec sensor sh` | Abre um shell dentro do container `sensor`. |
 | `docker-compose logs -f` | Exibe em tempo real os logs de todos os serviços. |
+   
+Criar o docker do sensor maquina 1    
+   docker compose up --build sensor
+Criar o do sonsumer:
+    docker build -t consumer-app ./consumer   # ← criou a imagem
+    docker run --rm -e SENSOR_ADDR=...:9000 consumer-app  # ← rodou o container
